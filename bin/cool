@@ -1,6 +1,5 @@
 #! /usr/bin/env node
 
-// console.log('cool-cli')
 
 
 //1. 配置可执行命令  commander
@@ -16,6 +15,7 @@ program
     .description('create a new project')
     .option('-f, --force','overwrite target directory if it exists')
     .action((name,cmd) => {
+      require('../lib/create.js')(name,cmd)
         console.log(name,cmd);
     })
 
@@ -43,11 +43,11 @@ program
     .usage(`<command> [option]`)
 
 
- program.on('--help',function(){
-     console.log();
-     console.log(`Run ${chalk.cyan(` cool <command> --help`)} show details`);
-     console.log();
- })   
+program.on('--help',function(){
+    console.log();
+    console.log(`Run ${chalk.cyan(` cool <command> --help`)} show details`);
+    console.log();
+})   
 //解析用户执行命令传入的参数
 program.parse(process.argv)
 
